@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="supercarModelStoreContainer" CdmEntityContainer="supercarEntities">
+    <EntitySetMapping Name="client">
+      <EntityTypeMapping TypeName="supercarModel.client">
+        <MappingFragment StoreEntitySet="client">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="numecump" ColumnName="numecump" />
+          <ScalarProperty Name="adresa" ColumnName="adresa" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="inrmasina">
+      <EntityTypeMapping TypeName="supercarModel.inrmasina">
+        <MappingFragment StoreEntitySet="inrmasina">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nrmasina" ColumnName="nrmasina" />
+          <ScalarProperty Name="marca" ColumnName="marca" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="disponibil" ColumnName="disponibil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,98 @@
+﻿<div class="row">
+
+    <div class="col-sm-4">
+
+
+
+
+        @using (Html.BeginForm("Salvare", "returnaremasina", FormMethod.Post, new { id = "popupForum" }))
+        {
+            <div>
+                <h1>Inchirieri Masini</h1>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Numar masina</label>
+                <input type="text" id="nrmasina" name="nrmasina" class="form-control" placeholder="Numar Masina" required>
+
+            </div>
+            <div class="form-group">
+                <label class="form-label">ID client</label>
+                <input type="text" id="clientid" name="clientid" class="form-control" placeholder="idclient" required>
+
+
+            </div>
+            <div class="form-group">
+                <label class="form-label">Data</label>
+                <input type="text" id="data" name="data" class="form-control" placeholder="Data" required>
+
+
+            </div>
+            <div class="form-group">
+                <label class="form-label">Timp trecut data returnarii</label>
+                <input type="text" id="timptrecut" name="timptrecut" class="form-control" placeholder="Timp" required>
+
+
+            </div>
+            <div class="form-group">
+                <label class="form-label">Amenda</label>
+                <input type="text" id="amenda" name="amenda" class="form-control" placeholder="Amenda" required>
+
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvare" class="btn btn-success" />
+
+
+            </div>
+
+
+        }
+    </div>
+
+
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    
+    <script>
+        getMasinaid();
+        function getMasinaid() {
+            $("#nrmasina").keyup(function (e) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/returnaremasina/Getid?nrmasina=' + $("#nrmasina").val(),
+                    dataType: 'JSON',
+                    success: function (data) {
+                        console.log(data);
+                        $('#clientid').val(data[0].clientid);
+                        $('#data').val(new Date(parseInt(data[0].DataSfarsit.substr(6))).toLocaleDateString());
+                        $('#timptrecut').val(data[0].Timptrecut);
+                        var timptrecut = data[0].Timptrecut;
+                        if (timptrecut > 0) {
+                            var amenda = timptrecut * 100;
+                            $('#amenda').val(amenda.toString());
+                        }
+                        else {
+                            $('#amenda').val("0");
+                        }
+                        
+
+                    }
+                });
+            });
+
+        }
+
+
+
+
+    </script>
+
+
+
+}
